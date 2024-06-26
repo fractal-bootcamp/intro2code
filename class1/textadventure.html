@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker Text Adventure</title>
+    <style>
+        body {
+            background-color: black;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #game-container {
+            flex-grow: 1;
+            width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            align-items: start;
+            justify-items: start;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            white-space: pre-wrap;
+        }
+
+        #choices {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #003300;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 10px 20px;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #004400;
+        }
+
+        #sys-info {
+            text-align: center;
+            font-size: 0.8em;
+            color: #006600;
+        }
+
+        #modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        #modal-content {
+            background-color: #001100;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #00ff00;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        #close-modal {
+            color: #00ff00;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="game-container"></div>
+    <div id="choices"></div>
+    <div id="sys-info">
+        <button onclick="openModal()">[SYS_INFO]</button>
+    </div>
+
+    <div id="modal">
+        <div id="modal-content">
+            <span id="close-modal" onclick="closeModal()">&times;</span>
+            <h2>System Message</h2>
+            <p>This is a simulated hacker experience. No actual systems were harmed in the making of this game.</p>
+        </div>
+    </div>
+
+    <script>
+        const scenes = [
+            {
+                text: "You're sitting in front of your computer, the soft glow of the monitor illuminating your face. The clock reads 23:42. A message pops up on your screen: 'Ready to dive into the matrix?'",
+                choices: [
+                    { text: "INITIALIZE", nextScene: 1 },
+                    { text: "SHUTDOWN", nextScene: 2 },
+                ]
+            },
+            {
+                text: "Your fingers dance across the keyboard. Lines of code flash by as you breach the first firewall. Suddenly, an alarm blares. Security protocols activated.",
+                choices: [
+                    { text: "HACK DEEPER", nextScene: 3 },
+                    { text: "ENGAGE STEALTH", nextScene: 4 },
+                ]
+            },
+            {
+                text: "Game Over. The system shuts down, leaving you in darkness. Maybe next time, hacker.",
+                choices: [
+                    { text: "RESTART", nextScene: 0 },
+                ]
+            },
+            {
+                text: "You push forward, your code breaking through layer after layer. You're in. The mainframe's secrets are yours.",
+                choices: [
+                    { text: "DOWNLOAD DATA", nextScene: 5 },
+                    { text: "PLANT VIRUS", nextScene: 6 },
+                ]
+            },
+            {
+                text: "You activate your stealth protocols. The alarms fade away. You're invisible in the system, a ghost in the machine.",
+                choices: [
+                    { text: "PROCEED CAUTIOUSLY", nextScene: 7 },
+                    { text: "EXIT SYSTEM", nextScene: 2 },
+                ]
+            },
+            {
+                text: "Data streams into your system. Gigabytes of classified information at your fingertips. But the download is traced...",
+                choices: [
+                    { text: "CONTINUE", nextScene: 8 },
+                ]
+            },
+            {
+                text: "Your virus spreads through the system like wildfire. Chaos ensues in the digital realm. Your presence is detected...",
+                choices: [
+                    { text: "FLEE", nextScene: 8 },
+                ]
+            },
+            {
+                text: "You navigate the system undetected. A treasure trove of data lies before you. What's your next move, ghost?",
+                choices: [
+                    { text: "EXTRACT DATA", nextScene: 5 },
+                    { text: "LEAVE NO TRACE", nextScene: 2 },
+                ]
+            },
+            {
+                text: "Sirens blare in the distance. You've been compromised. Time to disappear into the digital ether...",
+                choices: [
+                    { text: "EMERGENCY LOGOUT", nextScene: 0 },
+                ]
+            }
+        ];
+
+        let currentScene = 0;
+        const gameContainer = document.getElementById('game-container');
+        const choicesContainer = document.getElementById('choices');
+
+        function typeText(text, callback) {
+            let i = 0;
+            gameContainer.innerHTML += '\n\n';
+            const intervalId = setInterval(() => {
+                if (i < text.length) {
+                    gameContainer.innerHTML += text.charAt(i);
+                    gameContainer.scrollTop = gameContainer.scrollHeight;
+                    i++;
+                } else {
+                    clearInterval(intervalId);
+                    callback();
+                }
+            }, 30);
+        }
+
+        function displayChoices() {
+            choicesContainer.innerHTML = '';
+            scenes[currentScene].choices.forEach(choice => {
+                const button = document.createElement('button');
+                button.textContent = choice.text;
+                button.onclick = () => makeChoice(choice.nextScene);
+                choicesContainer.appendChild(button);
+            });
+        }
+
+        function makeChoice(nextScene) {
+            currentScene = nextScene;
+            choicesContainer.innerHTML = '';
+            if (nextScene === 0) {
+                // Clear the game container when restarting
+                gameContainer.innerHTML = '';
+            }
+            typeText(scenes[currentScene].text, displayChoices);
+        }
+
+        function openModal() {
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Start the game
+        typeText(scenes[currentScene].text, displayChoices);
+
+        // Close modal when clicking outside of it
+        window.onclick = function (event) {
+            if (event.target == document.getElementById('modal')) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+
+</html>

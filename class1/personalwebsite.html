@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Neo-Brutalist Gen Z Maximalist Site</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+        body {
+            font-family: 'VT323', monospace;
+            background-color: #ff00ff;
+            color: #00ff00;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 100 100"><text y=".9em" font-size="90">💅</text><circle cx="92" cy="92" r="8" fill="white" stroke="black" stroke-width="2"/></svg>') 37 37, auto;
+            overflow-x: hidden;
+        }
+
+        /* Apply custom cursor to all interactive elements */
+        a,
+        button,
+        input[type="submit"],
+        input[type="button"],
+        .project,
+        .clickable {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 100 100"><text y=".9em" font-size="90">💅</text><circle cx="92" cy="92" r="8" fill="white" stroke="black" stroke-width="2"/></svg>') 37 37, pointer;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Press Start 2P', cursive;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px #ff0000;
+        }
+
+        .hero {
+            background-color: #00ffff;
+            border: 5px solid #000000;
+            padding: 20px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .project {
+            background-color: #ffff00;
+            border: 3px dashed #000000;
+            padding: 10px;
+            transition: transform 0.3s;
+        }
+
+        .project:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .favorites {
+            background-color: #ff6600;
+            border: 4px dotted #000000;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .marquee {
+            background-color: #000000;
+            color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-100%, 0);
+            }
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ff00ff;
+            border: 5px solid #00ff00;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .gif-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        .svg-placeholder {
+            width: 100%;
+            height: 150px;
+        }
+
+        button {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #00ff00;
+            color: #000000;
+            border: 3px solid #000000;
+            padding: 10px 20px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background-color: #000000;
+            color: #00ff00;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- The rest of the HTML remains the same as in the previous version -->
+    <div class="gif-background">
+        <svg class="svg-placeholder" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="200" fill="#ff00ff" />
+            <circle cx="100" cy="100" r="80" fill="#00ffff" />
+            <polygon points="100,20 40,180 160,180" fill="#ffff00" />
+            <text x="100" y="100" font-family="Press Start 2P" font-size="20" fill="#000000" text-anchor="middle"
+                dominant-baseline="middle">GIF BG</text>
+        </svg>
+    </div>
+
+    <div class="container">
+        <header class="hero animate__animated animate__rubberBand">
+            <h1>Welcome to My World!</h1>
+        </header>
+
+        <main>
+            <section class="projects">
+                <div class="project animate__animated animate__pulse">
+                    <h2>Project 1</h2>
+                    <svg class="svg-placeholder" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="200" height="200" fill="#ff6600" />
+                        <circle cx="100" cy="100" r="80" fill="#00ff00" />
+                        <text x="100" y="100" font-family="Press Start 2P" font-size="20" fill="#ffffff"
+                            text-anchor="middle" dominant-baseline="middle">Project 1</text>
+                    </svg>
+                    <p>This is my awesome project!</p>
+                </div>
+                <div class="project animate__animated animate__pulse">
+                    <h2>Project 2</h2>
+                    <svg class="svg-placeholder" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="200" height="200" fill="#00ffff" />
+                        <polygon points="100,20 40,180 160,180" fill="#ff00ff" />
+                        <text x="100" y="120" font-family="Press Start 2P" font-size="20" fill="#000000"
+                            text-anchor="middle" dominant-baseline="middle">Project 2</text>
+                    </svg>
+                    <p>Another cool thing I made!</p>
+                </div>
+            </section>
+
+            <section class="favorites">
+                <h2>My Favorite Things</h2>
+                <ul>
+                    <li>🎵 Music: Hyperpop</li>
+                    <li>🎮 Game: Among Us</li>
+                    <li>📱 App: TikTok</li>
+                    <li>🍕 Food: Avocado Toast</li>
+                </ul>
+            </section>
+        </main>
+
+        <div class="marquee">
+            <p class="marquee-content">🚀 Welcome to my site! 💖 Check out my projects! 🌈 Let's connect! 🎉</p>
+        </div>
+    </div>
+
+    <div class="popup" id="welcomePopup">
+        <h2>Hey there! 👋</h2>
+        <p>Welcome to my totally rad website!</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script>
+        // Tilt effect on projects
+        VanillaTilt.init(document.querySelectorAll(".project"), {
+            max: 25,
+            speed: 400
+        });
+
+        // Show popup after 2 seconds
+        setTimeout(() => {
+            document.getElementById('welcomePopup').style.display = 'block';
+        }, 2000);
+
+        function closePopup() {
+            document.getElementById('welcomePopup').style.display = 'none';
+        }
+
+        // Random color change on hover for h2 elements
+        const h2Elements = document.querySelectorAll('h2');
+        h2Elements.forEach(h2 => {
+            h2.addEventListener('mouseover', () => {
+                h2.style.color = `rgb(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255})`;
+            });
+        });
+    </script>
+</body>
+
+</html>
