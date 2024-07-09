@@ -11,12 +11,15 @@ When building a web server, we often use a web Framework like Express.js, to mak
 2. It's minimal, flexible, and widely used in the industry
 3. Express.js simplifies the process of building web servers and APIs
 
+### Legend:
+`code` - When you see code in `code snippets like this` it typically means that's a command that can be run either in a programming language, or in the terminal.
+
 # 1. Setting up the development environment
 
 Before we begin, ensure that you following installed:
-1. Node.js (latest LTS version) (test with `node -v`)
-2. npm (comes with Node.js) (test with `npm -v`)
-3. A text editor (e.g., Visual Studio Code, Sublime Text) (test with `code --version`)
+1. Node.js (latest LTS version) (test with `node -v` in the terminal)
+2. npm (comes with Node.js) (test with `npm -v` in the terminal)
+3. A text editor (e.g., Visual Studio Code, Sublime Text) (test with `code --version` in the terminal)
 
 ### Setup Steps:
 1. Create a new directory for your project:
